@@ -1,0 +1,25 @@
+# CircleCI configuration file
+
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/openjdk:17.0.1
+    steps:
+      - checkout
+      - run:
+            name: Build
+            command: mvn -B -DskipTests clean package
+
+      - run:
+            name: Test
+            command: mvn -B test
+
+workflows:
+  verification:
+    jobs:
+      - build-and-test:
+            filters:
+                branches:
+                only: master
