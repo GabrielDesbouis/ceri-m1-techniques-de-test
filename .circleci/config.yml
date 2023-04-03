@@ -3,9 +3,9 @@
 version: 2.1
 
 jobs:
-  build:
+  build-and-test:
     docker:
-      - image: cimg/openjdk:17.0
+      - image: cimg/openjdk:17.0.1
     steps:
       - checkout
       - run:
@@ -17,6 +17,10 @@ jobs:
             command: mvn test
 
 workflows:
-  sample:
+  verification:
     jobs:
-      - build-and-test
+      - build-and-test:
+            filters:
+                branches:
+                only:
+                  - master
