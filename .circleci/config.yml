@@ -14,12 +14,9 @@ jobs:
 
       - run:
             name: Test
-            command: mvn -B test
+            command: mvn test
 
 workflows:
-  verification:
+  sample:
     jobs:
-      - build-and-test:
-            filters:
-                branches:
-                only: master
+      - build-and-test
