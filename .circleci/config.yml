@@ -48,7 +48,7 @@ jobs:
           name: javadoc
           command:
             mvn javadoc:javadoc
-      - codecov/upload
+
       - run:
           name: deploy
           command: |
