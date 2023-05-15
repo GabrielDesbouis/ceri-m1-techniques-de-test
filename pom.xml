@@ -75,7 +75,7 @@
                     <version>1.0.0</version>
                     <executions>
                         <execution>
-                            <phase>compile</phase>
+                            <phase>post-site</phase>
                             <goals>
                                 <goal>badges</goal>
                             </goals>
