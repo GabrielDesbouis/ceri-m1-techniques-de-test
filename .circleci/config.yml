@@ -1,6 +1,8 @@
 # CircleCI configuration file
 
 version: 2.1
+orbs:
+  codecov: codecov/codecov@3.2.4
 
 jobs:
   build-and-test:
@@ -48,7 +50,7 @@ jobs:
           name: javadoc
           command:
             mvn javadoc:javadoc
-
+      - codecov/upload
       - run:
           name: deploy
           command: |
