@@ -48,7 +48,6 @@ jobs:
           name: javadoc
           command:
             mvn javadoc:javadoc
-
       - run:
           name: deploy
           command: |
