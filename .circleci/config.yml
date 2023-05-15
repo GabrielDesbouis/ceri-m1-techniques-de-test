@@ -16,6 +16,16 @@ jobs:
             name: Test
             command: mvn test
 
+      - store_artifacts:
+          path: target/site/jacoco/jacoco.xml
+          destination: /tmp/artifacts
+
+      - run:
+          name: Upload coverage data to Codecov
+          command: bash <(curl -s https://codecov.io/bash) -t ${CODECOV_TOKEN}
+      - run:
+          name: Code Coverage
+          command: curl -Os https://uploader.codecov.io/latest/linux/codecov; chmod +x codecov; ./codecov
 workflows:
   verification:
     jobs:
@@ -25,4 +35,4 @@ workflows:
                   only:
                     - master
 
-# FIN TP2
+# FIN TP4
