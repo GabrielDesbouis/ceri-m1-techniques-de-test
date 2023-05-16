@@ -42,7 +42,7 @@ public class PokemonMetadataProvider
                 }
             }
         }
-        return null;
+        throw new PokedexException("Introuvable");
     }
 
 }
