@@ -41,6 +41,7 @@ public class PokemonMetadata {
      * @param defense Defense level.
      * @param stamina Stamina level.
      */
+    @SuppressWarnings("checkstyle:HiddenField")
     public PokemonMetadata(final int index, final String name, final int attack,
                            final int defense, final int stamina) {
         this.index = index;
@@ -52,6 +53,7 @@ public class PokemonMetadata {
 
     /**
      * Index getter.
+     *
      * @return Pokemon index.
      **/
     public int getIndex() {
@@ -60,6 +62,7 @@ public class PokemonMetadata {
 
     /**
      * Name getter.
+     *
      * @return Pokemon name.
      **/
     public String getName() {
@@ -68,6 +71,7 @@ public class PokemonMetadata {
 
     /**
      * Attack level getter.
+     *
      * @return Attack level.
      **/
     public int getAttack() {
@@ -76,6 +80,7 @@ public class PokemonMetadata {
 
     /**
      * Defense level getter.
+     *
      * @return Defense level.
      **/
     public int getDefense() {
@@ -84,6 +89,7 @@ public class PokemonMetadata {
 
     /**
      * Stamina level getter.
+     *
      * @return Stamina level.
      **/
     public int getStamina() {
