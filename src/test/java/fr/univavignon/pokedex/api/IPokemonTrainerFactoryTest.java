@@ -1,32 +1,41 @@
 package fr.univavignon.pokedex.api;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
+/**
+ * Test interface for IPokemonTrainerFactory.
+ */
 public class IPokemonTrainerFactoryTest {
 
-    public static IPokemonTrainerFactory getPokemonTrainerFactory() {
-        return mock(IPokemonTrainerFactory.class);
-    }
+    /**
+     * PokedexTrainer factory.
+     */
+    private IPokemonTrainerFactory pokemonTrainerFactory;
 
-    private IPokemonTrainerFactory pokemonTrainerFactory = getPokemonTrainerFactory();
-    private PokemonTrainer pokemonTrainer = mock(PokemonTrainer.class);
-    private IPokedexFactory pokedexFactory = mock(IPokedexFactory.class);
+
+    /**
+     * Pokedex.
+     */
+    private IPokedexFactory pokedex;
+
+    /**
+     * Trainer name.
+     */
     private String name = "test";
 
 
     @Before
-    public void setUp() throws Exception {
-        when(pokemonTrainerFactory.createTrainer(name, Team.MYSTIC, pokedexFactory)).thenReturn(pokemonTrainer);
+    public void setUp() {
+        pokedex = new PokedexFactory();
+        pokemonTrainerFactory = new PokemonTrainerFactory();
     }
 
     @Test
     public void testCreateTrainer() {
-        assert (pokemonTrainerFactory.createTrainer("test", Team.MYSTIC, pokedexFactory) == pokemonTrainer);
+        PokemonTrainer trainer = pokemonTrainerFactory.createTrainer(name, Team.MYSTIC, pokedex);
+        PokemonTrainer trainer1 = new PokemonTrainer(name, Team.MYSTIC, pokedex.createPokedex(new PokemonMetadataProvider(), new PokemonFactory()));
+        Assert.assertEquals(trainer.getName(), trainer1.getName());
     }
 }
