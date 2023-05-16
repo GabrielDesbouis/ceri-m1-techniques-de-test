@@ -33,7 +33,8 @@ public class PokemonMetadataProvider
     @Override
     public PokemonMetadata getPokemonMetadata(final int index)
             throws PokedexException {
-        if (index < 0 || index >= 199) {
+        final int maxIndex = 199;
+        if (index < 0 || index >= maxIndex) {
             throw new PokedexException("Invalid index");
         } else {
             for (PokemonMetadata pokemonMetadata : pokemonMetadataList) {

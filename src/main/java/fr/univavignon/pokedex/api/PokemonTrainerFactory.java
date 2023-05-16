@@ -8,7 +8,8 @@ public class PokemonTrainerFactory
     /**
      * @param name           Name of the created trainer.
      * @param team           Team of the created trainer.
-     * @param pokedexFactory Factory to use for creating associated pokedex instance.
+     * @param pokedexFactory Factory to use for creating associated pokedex
+     *                       instance.
      * @return Created trainer instance.
      */
     @Override

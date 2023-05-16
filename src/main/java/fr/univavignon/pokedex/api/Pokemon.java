@@ -40,11 +40,11 @@ public final class Pokemon extends PokemonMetadata {
      * @param attack  Attack level.
      * @param defense Defense level.
      * @param stamina Stamina level.
-     * @param cp      Pokemon cp.
-     * @param hp      Pokemon hp.
-     * @param dust    Required dust for upgrading this pokemon.
-     * @param candy   Required candy for upgrading this pokemon.
-     * @param iv      IV perfection percentage.
+     * @param cpP     Pokemon cp.
+     * @param hpP     Pokemon hp.
+     * @param dustP   Required dust for upgrading this pokemon.
+     * @param candyP  Required candy for upgrading this pokemon.
+     * @param ivP     IV perfection percentage.
      */
     @SuppressWarnings("checkstyle:ParameterNumber")
     public Pokemon(
@@ -53,17 +53,17 @@ public final class Pokemon extends PokemonMetadata {
             final int attack,
             final int defense,
             final int stamina,
-            final int cp,
-            final int hp,
-            final int dust,
-            final int candy,
-            final double iv) {
+            final int cpP,
+            final int hpP,
+            final int dustP,
+            final int candyP,
+            final double ivP) {
         super(index, name, attack, defense, stamina);
-        this.cp = cp;
-        this.hp = hp;
-        this.dust = dust;
-        this.candy = candy;
-        this.iv = iv;
+        this.cp = cpP;
+        this.hp = hpP;
+        this.dust = dustP;
+        this.candy = candyP;
+        this.iv = ivP;
     }
 
     /**

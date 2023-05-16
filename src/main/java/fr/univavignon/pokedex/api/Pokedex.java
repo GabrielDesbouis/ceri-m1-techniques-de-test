@@ -27,14 +27,13 @@ public class Pokedex implements IPokedex {
     /**
      * Default constructor.
      *
-     * @param metadataProvider Metadata provider the created pokedex will use.
-     * @param pokemonFactory   Pokemon factory the created pokedex will use.
+     * @param mP Metadata provider the created pokedex will use.
+     * @param pF Pokemon factory the created pokedex will use.
      */
-    @SuppressWarnings("checkstyle:HiddenField")
-    public Pokedex(final IPokemonMetadataProvider metadataProvider,
-                   final IPokemonFactory pokemonFactory) {
-        this.metadataProvider = metadataProvider;
-        this.pokemonFactory = pokemonFactory;
+    public Pokedex(final IPokemonMetadataProvider mP,
+                   final IPokemonFactory pF) {
+        this.metadataProvider = mP;
+        this.pokemonFactory = pF;
         this.pokemons = new ArrayList<>();
     }
 
@@ -61,10 +60,10 @@ public class Pokedex implements IPokedex {
      * @return Pokemon denoted by the given identifier.
      * @throws PokedexException If the given index is not valid.
      */
-    @SuppressWarnings("checkstyle:MagicNumber")
     @Override
     public Pokemon getPokemon(final int id) throws PokedexException {
-        if (id < 0 || id >= 199) {
+        final int maxIndex = 199;
+        if (id < 0 || id >= maxIndex) {
             throw new PokedexException("Invalid index");
         } else {
             for (Pokemon pokemon : pokemons) {

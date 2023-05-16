@@ -16,7 +16,9 @@ public class PokemonFactory
                                  final int dust,
                                  final int candy) throws PokedexException {
 
-        if (index < 0 || index >= 199) {
+        final int maxIndex = 199;
+        final double constant = 100.0;
+        if (index < 0 || index >= maxIndex) {
             throw new IllegalArgumentException("Invalid index");
         } else {
             PokemonMetadata pokemonMetadata =
@@ -25,7 +27,7 @@ public class PokemonFactory
                     pokemonMetadata.getAttack(), pokemonMetadata.getDefense(),
                     pokemonMetadata.getStamina(), dust, candy,
                     (int) Math.round(
-                            (cp * 100.0) / pokemonMetadata.getAttack()));
+                            (cp * constant) / pokemonMetadata.getAttack()));
         }
 
     }

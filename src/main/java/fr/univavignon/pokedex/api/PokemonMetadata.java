@@ -35,20 +35,21 @@ public class PokemonMetadata {
     /**
      * Default constructor.
      *
-     * @param index   Pokemon index.
-     * @param name    Pokemon name.
-     * @param attack  Attack level.
-     * @param defense Defense level.
-     * @param stamina Stamina level.
+     * @param indexP   Pokemon index.
+     * @param nameP    Pokemon name.
+     * @param attackP  Attack level.
+     * @param defenseP Defense level.
+     * @param staminaP Stamina level.
      */
     @SuppressWarnings("checkstyle:HiddenField")
-    public PokemonMetadata(final int index, final String name, final int attack,
-                           final int defense, final int stamina) {
-        this.index = index;
-        this.name = name;
-        this.attack = attack;
-        this.defense = defense;
-        this.stamina = stamina;
+    public PokemonMetadata(final int indexP, final String nameP,
+                           final int attackP,
+                           final int defenseP, final int staminaP) {
+        this.index = indexP;
+        this.name = nameP;
+        this.attack = attackP;
+        this.defense = defenseP;
+        this.stamina = staminaP;
     }
 
     /**
