@@ -1,5 +1,8 @@
 package fr.univavignon.pokedex.api;
 
+/**
+ * Factory interface for class that aims to create PokemonTrainer instance.
+ */
 public class PokemonTrainerFactory
         implements IPokemonTrainerFactory {
     /**

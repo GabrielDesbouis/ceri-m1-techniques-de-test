@@ -1,5 +1,8 @@
 package fr.univavignon.pokedex.api;
 
+/**
+ * Factory interface for class that aims to create PokemonMetadata instance.
+ */
 public class PokedexFactory
         implements IPokedexFactory {
     /**

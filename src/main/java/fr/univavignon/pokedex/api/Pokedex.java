@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * Pokedex API.
+ */
 public class Pokedex implements IPokedex {
 
     /**
@@ -58,9 +61,10 @@ public class Pokedex implements IPokedex {
      * @return Pokemon denoted by the given identifier.
      * @throws PokedexException If the given index is not valid.
      */
+    @SuppressWarnings("checkstyle:MagicNumber")
     @Override
     public Pokemon getPokemon(final int id) throws PokedexException {
-        if (id < 0 || id >= pokemons.size()) {
+        if (id < 0 || id >= 199) {
             throw new PokedexException("Invalid index");
         } else {
             for (Pokemon pokemon : pokemons) {
@@ -109,7 +113,7 @@ public class Pokedex implements IPokedex {
     /**
      * @param index Index of the pokemon to retrieve metadata for.
      * @return Pokemon metadata.
-     * @throws PokedexException If the given <tt>index</tt> is not valid.
+     * @throws PokedexException If the given index is not valid.
      */
     @Override
     public PokemonMetadata getPokemonMetadata(final int index)

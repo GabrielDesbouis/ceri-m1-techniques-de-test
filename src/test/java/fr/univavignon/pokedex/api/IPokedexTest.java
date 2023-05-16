@@ -1,78 +1,139 @@
 package fr.univavignon.pokedex.api;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 
-import java.util.Collections;
-
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import java.util.Arrays;
+import java.util.List;
 
 public class IPokedexTest {
 
     private IPokedex pokedex;
-    private Pokemon pokemon;
+
+    private PokemonComparators comparator;
     private Pokemon Bulbizare;
     private Pokemon Aquali;
 
-    public static IPokedex getPokedex() {
-        IPokemonMetadataProvider metadataProvider = mock(IPokemonMetadataProvider.class);
-        IPokemonFactory pokemonFactory = mock(IPokemonFactory.class);
-        IPokedexFactory pokedexFactory = mock(IPokedexFactory.class);
-        when(pokedexFactory.createPokedex(metadataProvider, pokemonFactory)).thenReturn(mock(IPokedex.class));
-        return pokedexFactory.createPokedex(metadataProvider, pokemonFactory);
-    }
-
     @Before
     public void setUp() throws Exception {
-        pokedex = getPokedex();
-        when(pokedex.size()).thenReturn(0);
-        pokemon = mock(Pokemon.class);
-
-        // A utiliser pour la suite du projet, dans les implémentations.
-        Bulbizare = new Pokemon(0, "Bulbizarre", 126, 126, 90, 613, 64, 4000,4, 56);
-        Aquali = new Pokemon(133, "Aquali", 186, 168, 260, 2729, 202, 5000, 8, 100);
+        PokemonMetadataProvider pokemonMetadataProvider =
+                new PokemonMetadataProvider();
+        IPokemonFactory pokemonFactory = new PokemonFactory();
+        this.pokedex = new Pokedex(pokemonMetadataProvider, pokemonFactory);
+        Bulbizare = new Pokemon(0, "Bulbizarre", 126, 126, 90, 613, 64, 4000, 4,
+                56);
+        Aquali = new Pokemon(133, "Aquali", 186, 168, 260, 2729, 202, 5000, 8,
+                100);
+        pokedex.addPokemon(Bulbizare);
+        pokedex.addPokemon(Aquali);
+        comparator = PokemonComparators.NAME;
     }
 
-    @BeforeEach
-    public void setUpEach() throws Exception {
-        pokedex = getPokedex();
+
+    /**
+     * Should return a pokedex instance
+     */
+    @Test
+    public void testCreatePokedex() {
+        Assert.assertNotNull(pokedex);
     }
 
+    /**
+     * Should return 0 when compare two same pokemons
+     * Should return 1 when compare Bulbizare and Aquali
+     * Should return -1 when compare Aquali and Bulbizare
+     */
+    @Test
+    public void testPokemonComparator() {
+        Assert.assertEquals(0, comparator.compare(Bulbizare, Bulbizare));
+        Assert.assertEquals(1, comparator.compare(Bulbizare, Aquali));
+        Assert.assertEquals(-1, comparator.compare(Aquali, Bulbizare));
+    }
+
+    /**
+     * Should return 2 when get size
+     */
     @Test
     public void testSize() {
-        assert (pokedex.size() == 0);
+        Assert.assertEquals(2, pokedex.size());
     }
 
 
-    @Test
-    public void testAddPokemon() {
-        int size = pokedex.size();
-        when(pokedex.addPokemon(any(Pokemon.class))).thenReturn(size);
-        when(pokedex.size()).thenReturn(size+1);
-        int index = pokedex.addPokemon(pokemon);
-        assert (index == size);
-        assert (pokedex.size() == size + 1);
-    }
 
+
+    /**
+     * Should return Bulbizare when getPokemon(0)
+     * Should return Aquali when getPokemon(133)
+     */
     @Test
     public void testGetPokemon() throws PokedexException {
-        int index = pokedex.addPokemon(pokemon);
-        when(pokedex.getPokemon(index)).thenReturn(pokemon);
-        assert (pokedex.getPokemon(index).equals(pokemon));
+        Assert.assertEquals(Bulbizare, pokedex.getPokemon(0));
+        Assert.assertEquals("Bulbizarre", pokedex.getPokemon(0).getName());
+        Assert.assertEquals(0, pokedex.getPokemon(0).getIndex());
+
+        Assert.assertEquals(Aquali, pokedex.getPokemon(133));
+        Assert.assertEquals("Aquali", pokedex.getPokemon(133).getName());
+        Assert.assertEquals(133, pokedex.getPokemon(133).getIndex());
     }
 
     @Test
     public void testGetPokemons() {
-        when(pokedex.getPokemons()).thenReturn(Collections.singletonList(pokemon));
-        assert (pokedex.getPokemons().equals(Collections.singletonList(pokemon)));
+        List<Pokemon> pokemons = pokedex.getPokemons();
+        pokemons.add(Bulbizare);
+        pokemons.add(Aquali);
+
+        Assert.assertEquals(pokemons, pokedex.getPokemons());
+
     }
 
     @Test
     public void testGetPokemonsWithOrder() {
-        when(pokedex.getPokemons(any(PokemonComparators.class))).thenReturn(Collections.singletonList(pokemon));
-        assert (pokedex.getPokemons(PokemonComparators.NAME).equals(Collections.singletonList(pokemon)));
+        List<Pokemon> pokemonsOrdered = Arrays.asList(Aquali, Bulbizare);
+        Assert.assertEquals(pokemonsOrdered, pokedex.getPokemons(comparator));
+    }
+
+    @Test
+    public void testGetters() throws PokedexException {
+        Assert.assertEquals(0, pokedex.getPokemon(0).getIndex());
+        Assert.assertEquals("Bulbizarre", pokedex.getPokemon(0).getName());
+        Assert.assertEquals(126, pokedex.getPokemon(0).getAttack());
+        Assert.assertEquals(126, pokedex.getPokemon(0).getDefense());
+        Assert.assertEquals(90, pokedex.getPokemon(0).getStamina());
+        Assert.assertEquals(613, pokedex.getPokemon(0).getCp());
+        Assert.assertEquals(64, pokedex.getPokemon(0).getHp());
+        Assert.assertEquals(4000, pokedex.getPokemon(0).getDust());
+        Assert.assertEquals(4, pokedex.getPokemon(0).getCandy());
+        Assert.assertEquals(56, pokedex.getPokemon(0).getIv(), 0.0);
+    }
+
+    /**
+     * Should throw PokedexException when index is greater than list size
+     */
+    @Test
+    public void exceptionPokedexTestIndexGreater() {
+        Assert.assertThrows(PokedexException.class,
+                () -> pokedex.getPokemon(500000));
+    }
+
+    /**
+     * Should throw PokedexException when index is negative
+     */
+    @Test
+    public void exceptionPokedexTestNegativeIndex() {
+        Assert.assertThrows(PokedexException.class,
+                () -> pokedex.getPokemon(-200));
+    }
+
+    /**
+     * Should return 0 then 1 when add Bulbizare and Aquali
+     */
+    @Test
+    public void testAddPokemon() {
+        int index = pokedex.addPokemon(Bulbizare);
+        Assert.assertEquals(index, Bulbizare.getIndex());
+
+        int index2 = pokedex.addPokemon(Bulbizare);
+        Assert.assertEquals(index2, Bulbizare.getIndex());
     }
 }
