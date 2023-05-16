@@ -1,32 +1,39 @@
 package fr.univavignon.pokedex.api;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertNotNull;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
 public class IPokedexFactoryTest {
 
-    private IPokedex pokedex;
+    /**
+     * Factory.
+     */
+    IPokedexFactory pokedexFactory;
 
-    public static IPokedexFactory getPokedexFactory() {
-        return mock(IPokedexFactory.class);
-    }
+    /**
+     * Mock of IPokemonMetadataProvider.
+     */
+    IPokemonMetadataProvider pokemonMetadataProvider;
+
+    /**
+     * Mock of IPokemonFactory.
+     */
+    IPokemonFactory pokemonFactory;
 
     @Before
-    public void setUp() throws Exception {
-        IPokemonFactory pokemonFactory = mock(IPokemonFactory.class);
-        IPokemonMetadataProvider pokemonMetadataProvider = mock(IPokemonMetadataProvider.class);
-        pokedex = mock(IPokedex.class);
-        when(getPokedexFactory().createPokedex(pokemonMetadataProvider, pokemonFactory)).thenReturn(pokedex);
+    public void setUp() {
+        pokemonMetadataProvider = new PokemonMetadataProvider();
+        pokemonFactory = new PokemonFactory();
+        pokedexFactory = new PokedexFactory();
     }
 
     @Test
     public void testCreatePokedex() {
-        assertNotNull(pokedex);
+        IPokedex pokedex = new Pokedex(pokemonMetadataProvider, pokemonFactory);
+        Assert.assertEquals(pokedexFactory.createPokedex(pokemonMetadataProvider, pokemonFactory).getClass(), pokedex.getClass());
+        Assert.assertEquals(pokedexFactory.createPokedex(pokemonMetadataProvider, pokemonFactory).size(), pokedex.size());
+        Assert.assertEquals(pokedexFactory.createPokedex(pokemonMetadataProvider, pokemonFactory).getPokemons(), pokedex.getPokemons());
     }
 
 }

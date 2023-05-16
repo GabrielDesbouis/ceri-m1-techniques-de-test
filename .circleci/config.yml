@@ -2,7 +2,7 @@
 
 version: 2.1
 
-orbd:
+orbs:
   codecov: codecov/codecov:latest
 
 jobs:

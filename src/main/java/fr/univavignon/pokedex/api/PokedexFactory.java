@@ -5,6 +5,7 @@ package fr.univavignon.pokedex.api;
  */
 public class PokedexFactory
         implements IPokedexFactory {
+
     /**
      * @param metadataProvider Metadata provider the created pokedex will use.
      * @param pokemonFactory   Pokemon factory the created pokedex will use.
@@ -14,6 +15,6 @@ public class PokedexFactory
     public IPokedex createPokedex(
             final IPokemonMetadataProvider metadataProvider,
             final IPokemonFactory pokemonFactory) {
-        return null;
+        return new Pokedex(metadataProvider, pokemonFactory);
     }
 }
