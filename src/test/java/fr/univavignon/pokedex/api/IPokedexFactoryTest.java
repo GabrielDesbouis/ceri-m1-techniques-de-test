@@ -4,6 +4,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Test interface for IPokedexFactory.
+ */
 public class IPokedexFactoryTest {
 
     /**
@@ -21,6 +24,9 @@ public class IPokedexFactoryTest {
      */
     IPokemonFactory pokemonFactory;
 
+    /**
+     * Set up.
+     */
     @Before
     public void setUp() {
         pokemonMetadataProvider = new PokemonMetadataProvider();
@@ -28,12 +34,21 @@ public class IPokedexFactoryTest {
         pokedexFactory = new PokedexFactory();
     }
 
+    /**
+     * Test createPokedex.
+     */
     @Test
     public void testCreatePokedex() {
         IPokedex pokedex = new Pokedex(pokemonMetadataProvider, pokemonFactory);
-        Assert.assertEquals(pokedexFactory.createPokedex(pokemonMetadataProvider, pokemonFactory).getClass(), pokedex.getClass());
-        Assert.assertEquals(pokedexFactory.createPokedex(pokemonMetadataProvider, pokemonFactory).size(), pokedex.size());
-        Assert.assertEquals(pokedexFactory.createPokedex(pokemonMetadataProvider, pokemonFactory).getPokemons(), pokedex.getPokemons());
+        Assert.assertEquals(
+                pokedexFactory.createPokedex(pokemonMetadataProvider,
+                        pokemonFactory).getClass(), pokedex.getClass());
+        Assert.assertEquals(
+                pokedexFactory.createPokedex(pokemonMetadataProvider,
+                        pokemonFactory).size(), pokedex.size());
+        Assert.assertEquals(
+                pokedexFactory.createPokedex(pokemonMetadataProvider,
+                        pokemonFactory).getPokemons(), pokedex.getPokemons());
     }
 
 }

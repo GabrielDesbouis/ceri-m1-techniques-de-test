@@ -7,15 +7,41 @@ import org.junit.Test;
 
 public class IPokemonMetadataProviderTest {
 
+    /**
+     * PokemonMetadata.
+     */
     private PokemonMetadata bulbizarreMetadata;
+
+    /**
+     * PokemonMetadataProvider.
+     */
     private IPokemonMetadataProvider pokemonMetadataProvider;
+
+    /**
+     * PokemonMetadataProvider.
+     */
     private IPokemonMetadataProvider pokemonMetadataProviderSecond;
+
+    /**
+     * PokemonMetadata.
+     */
     private PokemonMetadata aqualiMetadata;
 
+    /**
+     * PokemonFactory.
+     */
     private IPokemonFactory pokemonFactory;
 
+    /**
+     * Pokedex.
+     */
     private Pokedex pokedex;
 
+    /**
+     * Set up.
+     *
+     * @throws Exception
+     */
     @Before
     public void setUp() throws Exception {
         pokemonMetadataProvider = new PokemonMetadataProvider();
@@ -28,12 +54,26 @@ public class IPokemonMetadataProviderTest {
                 new PokemonMetadata(133, "Aquali", 186, 168, 260);
     }
 
+    /**
+     * Should return a PokemonMetadata instance.
+     *
+     * @throws PokedexException
+     */
     @Test
     public void testGetPokemonMetadataName() throws PokedexException {
-        Assert.assertEquals(pokemonMetadataProvider.getPokemonMetadata(0).getName(),"Bulbizare");
-        Assert.assertEquals(pokemonMetadataProvider.getPokemonMetadata(133).getName(), "Aquali");
+        Assert.assertEquals(
+                pokemonMetadataProvider.getPokemonMetadata(0).getName(),
+                "Bulbizare");
+        Assert.assertEquals(
+                pokemonMetadataProvider.getPokemonMetadata(133).getName(),
+                "Aquali");
     }
 
+    /**
+     * Should return a PokemonMetadata instance.
+     *
+     * @throws PokedexException
+     */
     @Test
     public void testGetPokemonMetadataIndex() throws PokedexException {
         assert (pokemonMetadataProvider.getPokemonMetadata(0).getIndex() == 0);
@@ -41,6 +81,11 @@ public class IPokemonMetadataProviderTest {
                 133);
     }
 
+    /**
+     * Should return a PokemonMetadata instance.
+     *
+     * @throws PokedexException
+     */
     @Test
     public void testGetPokemonMetadataAttack() throws PokedexException {
         assert (pokemonMetadataProvider.getPokemonMetadata(0).getAttack() ==
@@ -49,6 +94,11 @@ public class IPokemonMetadataProviderTest {
                 186);
     }
 
+    /**
+     * Should return a PokemonMetadata instance.
+     *
+     * @throws PokedexException
+     */
     @Test
     public void testGetPokemonMetadataDefense() throws PokedexException {
         assert (pokemonMetadataProvider.getPokemonMetadata(0).getDefense() ==
@@ -57,6 +107,11 @@ public class IPokemonMetadataProviderTest {
                 168);
     }
 
+    /**
+     * Should return a PokemonMetadata instance.
+     *
+     * @throws PokedexException
+     */
     @Test
     public void testGetPokemonMetadataStamina() throws PokedexException {
         assert (pokemonMetadataProvider.getPokemonMetadata(0).getStamina() ==
@@ -65,6 +120,11 @@ public class IPokemonMetadataProviderTest {
                 260);
     }
 
+    /**
+     * Should return a PokemonMetadata instance.
+     *
+     * @throws PokedexException
+     */
     @Test
     public void testGetPokemonMetadataEqualsSame() throws PokedexException {
         assert (pokemonMetadataProvider.getPokemonMetadata(0)
@@ -73,18 +133,33 @@ public class IPokemonMetadataProviderTest {
                 .equals(pokemonMetadataProvider.getPokemonMetadata(133)));
     }
 
+    /**
+     * Should return a PokemonMetadata instance.
+     *
+     * @throws PokedexException
+     */
     @Test
     public void testGetPokemonMetadataEqualsNull() throws PokedexException {
         assert (pokemonMetadataProvider.getPokemonMetadata(0) != null);
         assert (pokemonMetadataProvider.getPokemonMetadata(133) != null);
     }
 
+    /**
+     * Should return a PokemonMetadata instance.
+     *
+     * @throws PokedexException
+     */
     @Test
     public void testMetaDataProviderEqualsNull() throws PokedexException {
         assert (pokemonMetadataProvider != null);
         assert (pokemonMetadataProviderSecond != null);
     }
 
+    /**
+     * Should return a PokemonMetadata instance.
+     *
+     * @throws PokedexException
+     */
     @Test
     public void testMetaDataInstance() throws PokedexException {
         Assert.assertThrows(PokedexException.class, () -> {

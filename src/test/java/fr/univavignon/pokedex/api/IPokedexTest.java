@@ -7,6 +7,9 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Test interface for IPokedex.
+ */
 public class IPokedexTest {
 
     private IPokedex pokedex;
@@ -15,6 +18,11 @@ public class IPokedexTest {
     private Pokemon Bulbizare;
     private Pokemon Aquali;
 
+    /**
+     * Set up.
+     *
+     * @throws Exception
+     */
     @Before
     public void setUp() throws Exception {
         PokemonMetadataProvider pokemonMetadataProvider =
@@ -60,8 +68,6 @@ public class IPokedexTest {
     }
 
 
-
-
     /**
      * Should return Bulbizare when getPokemon(0)
      * Should return Aquali when getPokemon(133)
@@ -77,6 +83,9 @@ public class IPokedexTest {
         Assert.assertEquals(133, pokedex.getPokemon(133).getIndex());
     }
 
+    /**
+     * Should return Bulbizare when getPokemon(0)
+     */
     @Test
     public void testGetPokemons() {
         List<Pokemon> pokemons = pokedex.getPokemons();
@@ -87,12 +96,20 @@ public class IPokedexTest {
 
     }
 
+    /**
+     * Should return Bulbizare when getPokemon(0)
+     */
     @Test
     public void testGetPokemonsWithOrder() {
         List<Pokemon> pokemonsOrdered = Arrays.asList(Aquali, Bulbizare);
         Assert.assertEquals(pokemonsOrdered, pokedex.getPokemons(comparator));
     }
 
+    /**
+     * Should return Bulbizare when getPokemon(0)
+     *
+     * @throws PokedexException
+     */
     @Test
     public void testGetters() throws PokedexException {
         Assert.assertEquals(0, pokedex.getPokemon(0).getIndex());

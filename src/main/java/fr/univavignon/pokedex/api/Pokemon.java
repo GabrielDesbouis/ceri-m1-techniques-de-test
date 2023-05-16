@@ -68,6 +68,7 @@ public final class Pokemon extends PokemonMetadata {
 
     /**
      * Combat Point getter getter.
+     *
      * @return Pokemon cp.
      **/
     public int getCp() {
@@ -76,6 +77,7 @@ public final class Pokemon extends PokemonMetadata {
 
     /**
      * HP getter.
+     *
      * @return Pokemon hp.
      **/
     public int getHp() {
@@ -84,6 +86,7 @@ public final class Pokemon extends PokemonMetadata {
 
     /**
      * Dust getter.
+     *
      * @return Required dust for upgrading this pokemon.
      **/
     public int getDust() {
@@ -92,6 +95,7 @@ public final class Pokemon extends PokemonMetadata {
 
     /**
      * Candy getter.
+     *
      * @return Required candy for upgrading this pokemon.
      **/
     public int getCandy() {
@@ -100,6 +104,7 @@ public final class Pokemon extends PokemonMetadata {
 
     /**
      * IV getter.
+     *
      * @return IV perfection percentage.
      **/
     public double getIv() {
