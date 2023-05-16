@@ -2,6 +2,9 @@
 
 version: 2.1
 
+orbd:
+  codecov: codecov/codecov:latest
+
 jobs:
   build-and-test:
     docker:
@@ -43,6 +46,8 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "63:fc:c2:91:99:64:32:4b:51:1b:d4:fa:bf:f8:5c:70"
+
+      - codecov/upload
 
       - run:
           name: javadoc
