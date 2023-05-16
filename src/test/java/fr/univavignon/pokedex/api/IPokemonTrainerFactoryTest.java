@@ -47,4 +47,23 @@ public class IPokemonTrainerFactoryTest {
                         new PokemonFactory()));
         Assert.assertEquals(trainer.getName(), trainer1.getName());
     }
+
+    /**
+     * Test getTeam.
+     */
+    @Test
+    public void testGetTeam() {
+        PokemonTrainer trainer =
+                pokemonTrainerFactory.createTrainer(name, Team.MYSTIC, pokedex);
+        Assert.assertEquals(trainer.getTeam(), Team.MYSTIC);
+    }
+
+    /**
+     * Test getPokedex returns a IPokedex instance.
+     */
+    @Test
+    public void testGetPokedex() {
+        Assert.assertEquals(pokemonTrainerFactory.createTrainer(name,
+                Team.MYSTIC, pokedex).getPokedex().getClass(), Pokedex.class);
+    }
 }

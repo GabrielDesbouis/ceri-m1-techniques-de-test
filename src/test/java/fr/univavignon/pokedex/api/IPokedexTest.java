@@ -153,4 +153,36 @@ public class IPokedexTest {
         int index2 = pokedex.addPokemon(Bulbizare);
         Assert.assertEquals(index2, Bulbizare.getIndex());
     }
+
+    @Test
+    public void testPokedexCreatePokemonMethod() throws PokedexException {
+        Pokemon pokemon = pokedex.createPokemon(0, 613, 64, 4000, 4);
+        Assert.assertEquals(0, pokemon.getIndex());
+        Assert.assertEquals(613, pokemon.getCp());
+        Assert.assertEquals(64, pokemon.getHp());
+        Assert.assertEquals(4000, pokemon.getDust());
+        Assert.assertEquals(4, pokemon.getCandy());
+    }
+
+    @Test
+    public void testPokemonMetaDataGetter() throws PokedexException {
+        PokemonMetadata pokemonMetadata = pokedex.getPokemonMetadata(0);
+        Assert.assertEquals(0, pokemonMetadata.getIndex());
+        Assert.assertEquals("Bulbizare", pokemonMetadata.getName());
+        Assert.assertEquals(126, pokemonMetadata.getAttack());
+        Assert.assertEquals(126, pokemonMetadata.getDefense());
+        Assert.assertEquals(90, pokemonMetadata.getStamina());
+    }
+
+    @Test
+    public void testReturnNullWhenExceptionThrownDuringGetPokemon() {
+        Pokemon pokemon = null;
+        try {
+            pokedex.getPokemon(500000);
+            Assert.fail("Should have thrown an exception");
+        } catch (PokedexException e) {
+            Assert.assertNull(pokemon);
+        }
+
+    }
 }

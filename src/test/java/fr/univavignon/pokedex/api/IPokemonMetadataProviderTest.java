@@ -167,4 +167,17 @@ public class IPokemonMetadataProviderTest {
         });
     }
 
+    /**
+     * Should return a PokedexException instance.
+     */
+    @Test
+    public void testMetaDataException() {
+        Assert.assertThrows(PokedexException.class, () -> {
+            pokemonMetadataProvider.getPokemonMetadata(-1);
+        });
+        Assert.assertThrows(PokedexException.class, () -> {
+            pokemonMetadataProvider.getPokemonMetadata(200);
+        });
+    }
+
 }

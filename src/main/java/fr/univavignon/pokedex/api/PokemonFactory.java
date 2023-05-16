@@ -23,11 +23,12 @@ public class PokemonFactory
         } else {
             PokemonMetadata pokemonMetadata =
                     new PokemonMetadataProvider().getPokemonMetadata(index);
-            return new Pokemon(index, pokemonMetadata.getName(), cp, hp,
-                    pokemonMetadata.getAttack(), pokemonMetadata.getDefense(),
-                    pokemonMetadata.getStamina(), dust, candy,
-                    (int) Math.round(
-                            (cp * constant) / pokemonMetadata.getAttack()));
+            return new Pokemon(index, pokemonMetadata.getName(),
+                    pokemonMetadata.getAttack(),
+                    pokemonMetadata.getDefense(),
+                    pokemonMetadata.getStamina(), cp, hp, dust, candy,
+                    constant * (cp + hp + dust + candy)
+                            / pokemonMetadata.getAttack());
         }
 
     }

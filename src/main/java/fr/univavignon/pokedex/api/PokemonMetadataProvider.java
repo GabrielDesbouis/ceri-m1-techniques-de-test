@@ -17,11 +17,21 @@ public class PokemonMetadataProvider
      */
     @SuppressWarnings("checkstyle:MagicNumber")
     public PokemonMetadataProvider() {
+        final int bulbizareIndex = 0;
+        final int bulbizareAttack = 126;
+        final int bulbizareDefense = 126;
+        final int bulbizareStamina = 90;
+        final int aqualiIndex = 133;
+        final int aqualiAttack = 186;
+        final int aqualiDefense = 168;
+        final int aqualiStamina = 260;
         this.pokemonMetadataList = new ArrayList<>();
         pokemonMetadataList.add(
-                new PokemonMetadata(0, "Bulbizare", 126, 126, 90));
+                new PokemonMetadata(bulbizareIndex, "Bulbizare",
+                        bulbizareAttack, bulbizareDefense, bulbizareStamina));
         pokemonMetadataList.add(
-                new PokemonMetadata(133, "Aquali", 186, 168, 260));
+                new PokemonMetadata(aqualiIndex, "Aquali", aqualiAttack,
+                        aqualiDefense, aqualiStamina));
 
     }
 
