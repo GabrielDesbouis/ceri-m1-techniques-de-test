@@ -22,7 +22,7 @@ public class IPokemonFactoryTest {
     }
 
     @Test
-    public void testCreatePokemon() {
+    public void testCreatePokemon() throws PokedexException {
         assert (getPokemonFactory().createPokemon(0,0,0,0,0) == pokemon);
     }
 }
