@@ -44,6 +44,11 @@ public class IPokemonFactoryTest {
         Assert.assertEquals(pokemonTest.getHp(), pokemon.getHp());
         Assert.assertEquals(pokemonTest.getDust(), pokemon.getDust());
         Assert.assertEquals(pokemonTest.getCandy(), pokemon.getCandy());
+        Assert.assertEquals(pokemonTest.getName(), pokemon.getName());
+        Assert.assertEquals(pokemonTest.getAttack(), pokemon.getAttack());
+        Assert.assertEquals(pokemonTest.getDefense(), pokemon.getDefense());
+        Assert.assertEquals(pokemonTest.getStamina(), pokemon.getStamina());
+
     }
 
     /**
@@ -74,5 +79,14 @@ public class IPokemonFactoryTest {
         }
     }
 
+    /**
+     * Test create pokemon with negative index.
+     */
+    @Test
+    public void testCreatePokemonNegativeIndex() {
+        Assert.assertThrows(IllegalArgumentException.class, () -> {
+            pokemonFactory.createPokemon(-1, 613, 64, 4000, 4);
+        });
+    }
 
 }
